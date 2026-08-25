@@ -93,19 +93,34 @@ do
 
 totalAPagar = totalAPagar + ajustePago;
 
-Console.WriteLine("=== TICKET FINAL ===");
-Console.WriteLine($"Subtotal: ${total}");
-Console.WriteLine($"Descuento por monto: ${plataDescontada}");
+decimal descuentoFinal = plataDescontada;
+decimal recargoFinal = 0;
 
 if (opcionPago == "1")
 {
-    Console.WriteLine($"Descuento adicional por efectivo: ${ajustePago}");
+    descuentoFinal = descuentoFinal + (ajustePago * -1);
 }
 else if (opcionPago == "3")
 {
-    Console.WriteLine($"Recargo por credito: ${ajustePago}");
+    recargoFinal = ajustePago;
 }
 
-Console.WriteLine($"Total a cobrar: ${totalAPagar}");
+string guiones = "";
+for (int i = 0; i < 32; i++)
+{
+    guiones = guiones + "-";
+}
+
+Console.WriteLine(guiones);
+Console.WriteLine($"       {NombreComercio}");
+Console.WriteLine(guiones);
+Console.WriteLine($"Cajero: {nombreCajero}");
+Console.WriteLine($"Productos: {cantProductos}");
+Console.WriteLine($"Subtotal: {total}");
+Console.WriteLine($"Descuento: {descuentoFinal}");
+Console.WriteLine($"Recargo: {recargoFinal}");
+Console.WriteLine(guiones);
+Console.WriteLine($"TOTAL: {totalAPagar}");
+Console.WriteLine(guiones);
 
 Console.ReadLine();
