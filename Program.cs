@@ -1,18 +1,13 @@
 ﻿using System;
 
-//const string NombreComercio = "Carrefour";
-//Console.WriteLine($"--- {NombreComercio} ---");
-//Console.Write("Nombre del Cajero: ");
-//string NombreCajero = Console.ReadLine();
-//Console.WriteLine($"Bienvenido {NombreCajero}, Caja Abierta.");
+const string NombreComercio = "Carrefour";
+const decimal PorcentajeMayor = 10m;
+const decimal PorcentajeMenor = 5m;
 
-//Console.WriteLine("Ingrese un Producto: ");
-//string NombreProducto = Console.ReadLine();
-//Console.Write("Ingrese el precio del producto: ");
-//string PrecioProducto = Console.ReadLine();
-//decimal precioDecimal = Decimal.Parse(PrecioProducto);
-//Console.WriteLine($"Producto: {NombreProducto}, precio: {precioDecimal}");
-
+Console.WriteLine($"=== {NombreComercio} ===");
+Console.Write("Nombre del Cajero: ");
+string nombreCajero = Console.ReadLine();
+Console.WriteLine($"Bienvenida, {nombreCajero}. Caja abierta.");
 
 int cantProductos = 0;
 decimal total = 0;
@@ -53,8 +48,22 @@ do
 
 } while (opcion != "2");
 
-Console.WriteLine($"Cantidad de productos cargados: {cantProductos}");
-Console.WriteLine($"Total: ${total}");
+decimal plataDescontada = 0;
+
+if (total > 50000)
+{
+    plataDescontada = (total * PorcentajeMayor) / 100m;
+}
+else if (total > 20000)
+{
+    plataDescontada = (total * PorcentajeMenor) / 100m;
+}
+
+decimal totalAPagar = total - plataDescontada;
+
+Console.WriteLine("=== TICKET FINAL ===");
+Console.WriteLine($"Subtotal: ${total}");
+Console.WriteLine($"Descuento: ${plataDescontada}");
+Console.WriteLine($"Total a cobrar: ${totalAPagar}");
 
 Console.ReadLine();
-
